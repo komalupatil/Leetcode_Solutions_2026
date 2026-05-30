@@ -17,4 +17,17 @@ class Solution:
                 result += ((brackets[i][0] - min(brackets[i-1][0], income)) * brackets[i][1]/100)
         return result
 
-        
+
+## Solution 2
+
+class Solution:
+    def calculateTax(self, brackets: List[List[int]], income: int) -> float:
+        tax = 0
+        prev = 0
+        for upper, percent in brackets:
+            if income <= prev:
+                break
+            taxed = min(upper, income) - prev
+            tax += taxed * percent/100
+            prev = upper
+        return tax        
