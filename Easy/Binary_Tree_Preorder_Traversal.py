@@ -1,0 +1,45 @@
+# https://leetcode.com/problems/binary-tree-preorder-traversal/description/
+
+# using stack
+
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def preorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
+        result = []
+        stack = [root]
+        while stack:
+            node = stack.pop()
+            if node:
+                result.append(node.val)
+                stack.append(node.right)
+                stack.append(node.left)
+        return result
+
+# recursion 
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def preorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
+        result = []
+        if not root:
+            return result
+        def preorder(node):
+            if node:
+                result.append(node.val)
+                preorder(node.left)
+                preorder(node.right)
+        preorder(root)
+        return result
+
+        
+        
+
